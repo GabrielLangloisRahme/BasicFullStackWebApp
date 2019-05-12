@@ -39,6 +39,8 @@ require('./routes/authroutes')(app);
 
 /* Tells the port to use, if heroku it obtains it otherwise 500,
 shows were I can see results */
+
+//process.env is a heroku environment function
 const P = process.env.PORT || 5000
 app.listen(P);
 
