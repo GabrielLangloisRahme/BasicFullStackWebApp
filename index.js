@@ -92,12 +92,19 @@ Do npm install --save mongoose
 
 npm install --save cookie-session
 
-(...)
+11. Install react app
+In admin priviledge:
 
-12. npm app env -command prompt
+npm install -g create-react-app -save
+create-react-app client
+
+npm start <while in client directory>
+
+
 
 
 
 ^C lets you exit programs in command prompt
 cat lets you open programs on getbash
+-g means have it accessable globally
 */
