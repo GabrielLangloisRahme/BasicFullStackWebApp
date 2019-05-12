@@ -96,9 +96,23 @@ npm install --save cookie-session
 In admin priviledge:
 
 npm install -g create-react-app -save
-create-react-app client
-
+npx create-react app client
 npm start <while in client directory>
+
+12. In client directory do
+
+npm install http-proxy-middleware --save
+
+create setupProxy.js in client/src/ with this code
+
+const proxy = require('http-proxy-middleware')
+ 
+module.exports = function(app) {
+    app.use(proxy(['/api', '/auth/google'], { target: 'http://localhost:5000' }));
+}
+
+remove proxy scripts from client side json
+
 
 
 
