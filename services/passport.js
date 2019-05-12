@@ -2,7 +2,7 @@ const passport=require('passport');
 const GoogleStrategy=require('passport-google-oauth20').Strategy;
 // the ./ means look in current directory.
 // the ../ means go up 1 directory
-const keys = require('../config/keys.js');
+const keys = require('../config/keys');
 
 const mongoose = require('mongoose');
 
