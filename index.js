@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const mongoose=require('mongoose');
 
@@ -27,7 +29,7 @@ app.use(
         //this used to enscript cookie
         keys: [keys.cookieKey]
     })
-)
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -110,6 +112,32 @@ const proxy = require('http-proxy-middleware')
 module.exports = function(app) {
     app.use(proxy(['/api', '/auth/google'], { target: 'http://localhost:5000' }));
 }
+
+13. In client directory
+
+cd client
+npm install --save redux react-redux react-router-dom
+
+14. In client directory
+
+npm install materialize-css@next
+
+15. Install axios library which is important for api requests
+and Redux crunck used to make asynchronize functions work well together
+
+cd client
+npm install --save axios redux-thunk
+
+
+
+
+
+
+
+
+
+
+
 
 remove proxy scripts from client side json
 

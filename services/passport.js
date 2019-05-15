@@ -41,30 +41,31 @@ passport.use(new GoogleStrategy(
     }, 
     //this provides information of user once authonticated for database
     //remember cin
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
         
         // below attempts to find 1 user in User model where
         //the google id equivalent to the profile id of current user
         //whenever use mangodb queries make sure to use asynchronise functions like promises
 
-        User.findOne({googleId:profile.id})
-        .then((existingUser)=>{
+        const existingUser=await User.findOne({googleId:profile.id})
+        
             if (existingUser){
                 // we already have record with profile id
                 //the done holds null for error parameter to show
                 // no error, and second parameter is object looked at
-                done(null, existingUser)
+                return done(null, existingUser);
             }
-            else {
+            // there is no else here because if statement returns
+            //meaning exits function before making it here if restriction met
+
                 // we don't have user record with this id.
-                new User({googleId:profile.id}).save()
-                .then(user=>done(null, user))
-            }
-        })
+                const user=await new User({googleId:profile.id}).save()
+                done(null, user);
+           
+
+    }
+
+)
+)
         
         // the User here created in api but need .save to put it in mongodbdatabase
-        
-    }
-))
-
-

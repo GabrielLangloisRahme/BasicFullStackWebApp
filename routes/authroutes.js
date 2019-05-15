@@ -14,7 +14,15 @@ module.exports = (app) => {
     }));
     
     //this uses callback code to say go to user profile
-app.get('/auth/google/callback',passport.authenticate('google'))
+app.get('/auth/google/callback',passport.authenticate('google',{
+    // not in course but its not supposed to make it work
+    scope:['profile','email'] 
+} ),
+(req,res)=> {
+res.redirect('/surveys')
+}
+
+);
 
 // this logs out user
 app.get('/api/logout',(req, res)=>{
