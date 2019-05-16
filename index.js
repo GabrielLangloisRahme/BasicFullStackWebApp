@@ -1,4 +1,19 @@
+// Front end uses ES2015, while back end uses common js model
 
+// This means that front end need to import values before calling them
+// while didn't need this in the back end. This changes how keys.js would
+// work on the front end
+
+
+// IMPORTANT: In client folder, .env.prod uses the same key as
+// dev because testing, in real life it would be different
+
+// react-stripe-checkout api is not for payment form put for 
+// button that redirects user to stripe payment form
+
+
+// whenever your using an api, it's asynchronous,
+// so you have to use async await (if method returns a chainable promise) or a callback function!
 
 const express = require('express');
 const mongoose=require('mongoose');
@@ -9,6 +24,9 @@ const passport = require('passport');
 
 const keys=require('./config/keys');
 
+// this needed for stripe api backend
+
+const bodyParser=require('body-parser')
 
 // this the passport script requires model, this should be present before
 require('./models/User');
@@ -21,6 +39,18 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI)
 
 const app = express();
+
+// express middlewares can only be called in app.use.
+// Middlewares operate on incoming request before they are
+// sent off to our request handlers
+
+
+
+// this below is there so whenever request put or path request body
+// our application, the middleware parse body and assign it to
+// the req.body property of incoming request object (credit card token)
+app.use(bodyParser.json())
+
 
 app.use(
     cookieSession({
@@ -35,9 +65,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-//this captures the authroutes exported function
+//this captures the authroutes exported function and
+// passes in the app as an input
 
 require('./routes/authroutes')(app);
+require('./routes/billingRoutes')(app);
+
 
 /* Tells the port to use, if heroku it obtains it otherwise 500,
 shows were I can see results */
@@ -127,6 +160,18 @@ and Redux crunck used to make asynchronize functions work well together
 
 cd client
 npm install --save axios redux-thunk
+
+16. In client folder, install react stripe check out with
+
+cd client
+npm install --save react-stripe-checkout
+
+17. On server side, install stripe api
+
+npm install --save stripe
+
+18. On server right after install stripe, install body parser
+npm install --save body-parser
 
 
 

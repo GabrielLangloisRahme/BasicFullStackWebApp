@@ -26,4 +26,13 @@ export const fetchUser = () =>
         payload: request
     }
     */
+// this function says wait for the token to be posted in 
+// back end location /api/stripe, then take it and update
+// it to front end for payload
+export const handleToken =(token) => async dispatch => {
 
+    const res = await axios.post('/api/stripe',token);
+
+    dispatch({type: FETCH_USER, payload:res.data});
+
+}

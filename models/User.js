@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 //this collects all properties from object schema and adds one more
 const userSchema = new Schema ({
-    googleId: String
+    googleId: String,
+    credits: {type: Number, default:0}
     // can add more properties here to take from user
 })
 

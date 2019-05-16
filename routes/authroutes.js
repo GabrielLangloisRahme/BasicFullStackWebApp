@@ -26,9 +26,13 @@ res.redirect('/surveys')
 
 // this logs out user
 app.get('/api/logout',(req, res)=>{
-    //this kills the user cookie
+    //this kills the user cookie and logs out
     req.logout();
-    res.send(req.user);
+
+    //this would send the user info if existed
+    //res.send(req.user);
+
+    res.redirect('/')
 })
 
 //this is to test whether authetication works
