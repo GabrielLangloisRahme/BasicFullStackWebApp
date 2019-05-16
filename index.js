@@ -71,6 +71,34 @@ app.use(passport.session());
 require('./routes/authroutes')(app);
 require('./routes/billingRoutes')(app);
 
+// This code should only run when in production (heroku)
+
+if (process.env.NODE_ENV === 'production') {
+    // Express will serve up production assets
+    // like our main.js or main.css file in client folder, build folder
+    // this tells it to look for file in this directory for a match
+
+        app.use(express.static('client/build'));
+
+    //Express will serve up the index.html file
+    // if it doesn't recognize the route after above
+
+    const path=require('path');
+
+    // the url gets res response with the url name followed by
+    // the client, build, index html path
+
+    app.get('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'client'
+        ,'build','index.html'))
+    })
+
+
+
+}
+
+
+
 
 /* Tells the port to use, if heroku it obtains it otherwise 500,
 shows were I can see results */
@@ -172,6 +200,20 @@ npm install --save stripe
 
 18. On server right after install stripe, install body parser
 npm install --save body-parser
+
+
+19. 
+
+a) bulding production app in server
+cd client
+npm run build
+ this then creates everything you need in final version in
+ client folder, build folder
+
+b) Having Heroku build production app
+
+Remember heroku only cares about package.json file in server directory
+
 
 
 
