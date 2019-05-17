@@ -7,7 +7,7 @@ const requireLogin = require('../middlewares/requireLogin')
 
 module.exports=app=>{
 
-    // with app.post/get and so forth, there can be infinite arguments, but just runs first one that works
+    // with app.post/get and so forth, there can be infinite arguments, but just runs all the ones that works until the response is sent back with res.send
     app.post('/api/stripe',requireLogin, async (req,res)=>
     {
 

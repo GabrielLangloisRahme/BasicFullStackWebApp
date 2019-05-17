@@ -15,6 +15,10 @@
 // whenever your using an api, it's asynchronous,
 // so you have to use async await (if method returns a chainable promise) or a callback function!
 
+// whenever  you want to store data inside of a data base
+// you have to create a mongoose model call
+// In our case we want to surver class thats connected to user class so can store surveys for users
+
 const express = require('express');
 const mongoose=require('mongoose');
 
@@ -30,6 +34,8 @@ const bodyParser=require('body-parser')
 
 // this the passport script requires model, this should be present before
 require('./models/User');
+
+require('./models/Surveys');
 
 //the below is needed to insure that we use the passport.js file
 //and that it runs
@@ -70,6 +76,7 @@ app.use(passport.session());
 
 require('./routes/authroutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveryRoutes')(app);
 
 // This code should only run when in production (heroku)
 
@@ -214,7 +221,12 @@ b) Having Heroku build production app
 
 Remember heroku only cares about package.json file in server directory
 
+Add herokupostbuilt to package.json and when push to heroku it will recognize and run it
 
+
+19. Run sendgrid library for email sending api
+
+npm install --save sendgrid
 
 
 
