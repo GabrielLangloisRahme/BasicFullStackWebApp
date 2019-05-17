@@ -76,7 +76,7 @@ app.use(passport.session());
 
 require('./routes/authroutes')(app);
 require('./routes/billingRoutes')(app);
-require('./routes/surveryRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 // This code should only run when in production (heroku)
 
