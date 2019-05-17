@@ -19,6 +19,15 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers'
 
+/* Don't include below because it give hackers access
+But you can include it while on local server and use it to 
+test api --> look at test email sending in course if forget
+
+import axios from 'axios';
+window.axios=axios;
+
+*/
+
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 
