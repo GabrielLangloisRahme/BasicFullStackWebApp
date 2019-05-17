@@ -9,7 +9,7 @@ const surverySchema = new Schema({
     subject: String ,
     // below communicates to mongoose that recipient property type is array of the subdocument collection RecipientSchema taken from another file where types are mentioned there
 
-    recipients: [RecipientSchema],
+    recipients: [recipientSchema],
 
    // In mongoose, can have property within a property where recipient property
    // will hold email of recepient and whether the email sent was clicked

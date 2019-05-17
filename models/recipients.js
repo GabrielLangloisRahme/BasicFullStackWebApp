@@ -1,6 +1,6 @@
 // The recipient is a subdocument collection of survey collection model
 
-const mongoosel = require('mongoose')
+const mongoose = require('mongoose')
 const {Schema}=mongoose;
 
 
