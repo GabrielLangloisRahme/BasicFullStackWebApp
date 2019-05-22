@@ -62,7 +62,7 @@ class Mailer extends helper.Mail {
 
         // this sends the request back to mail provider sengrid
 
-        const response = this.sgApi.API(request);
+        const response = await this.sgApi.API(request);
 
         return response;
 
